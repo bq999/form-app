@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Bilal Qaiser</title>
+    <link rel="stylesheet" href="icons/material.css">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/index.js"></script>
+
+
+<br>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="First Name" type="text" class="validate" id="name">
+          <label for="first_name">First Name</label>
+        </div>
+      </div>
+ 
+ <div class="row">
+   <div class="input-field col s12">
+    <select id="country">
+      <option value="" disabled selected>Choose Country</option>
+      <option value="1">USA</option>
+      <option value="2">Canada</option>
+      <option value="3">Qatar</option>
+      <option value="2">Carribean</option>
+      <option value="3">UK</option>
+    </select>
+    <label>Country</label>
+  </div>
+</div>
+
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Passport ID" id="passport_id" type="text" class="validate">
+          <label for="passport_id">Passport ID</label>
+        </div>
+      </div>
+
+
+<div class="row">
+<div class="col s12">
+<input type="date" class="datepicker" name="bday" id="bday" onchange="submitBday()">
+
+</div>
+</div>
+
+
+
+<div class="row">
+<div class="col s12">
+  <h5>
+    Age: <span id="resultBday"></span>
+  </h5> 
+</div>
+</div>
+
+
+
+<div class="row">
+<div class="col s12">
+  <form action="#">
+    <h5>Gender: </h5>
+    <p>
+      <input name="group1" type="radio" id="test1" checked/>
+      <label for="test1">Male &nbsp</label>
+      <input name="group1" type="radio" id="test2" />
+      <label for="test2">Female</label>
+    </p>
+  </form>
+</div>
+</div>
+
+<br>
+
+<div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Email" name="email" type="email" class="validate" id='txtEmail' >
+          <label for="email">Email</label>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Password"  name="password" type="password" class="validate" id="psword">
+          <label for="password">Password</label>
+        </div>
+      </div>
+
+
+<!--
+        <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="GPA"  name="gpa" type="number" class="validate" id="gpa">
+          <label for="number">GPA</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   -->     
+
+      <div class="row">
+        <div class="input-field col s12">
+  <button class="btn waves-effect waves-light" type="submit" name="submit" onclick='Javascript:check();' >Submit
+    <i class="material-icons right">send</i>
+  </button>
+        </div>
+      </div>
+
+</div>
+
+
+
+</body>
+</html>

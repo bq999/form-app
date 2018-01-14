@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>Bilal Qaiser</title>
+  <link rel="stylesheet" href="icons/material.css">
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/index.js"></script>
+
+
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <script src="js/amcharts.js" type="text/javascript"></script>
+  <script src="js/serial.js" type="text/javascript"></script>
+
+  <!-- scripts for exporting chart as an image -->
+  <!-- Exporting to image works on all modern browsers except IE9 (IE10 works fine) -->
+  <!-- Note, the exporting will work only if you view the file from web server -->
+  <!--[if (!IE) | (gte IE 10)]> -->
+  <script type="text/javascript" src="js/export.js"></script>
+  <link  type="text/css" href="js/export.css" rel="stylesheet">
+  <!-- <![endif]-->
+
+  <script>
+
+
+
+
+  function computeLoan(){
+
+
+    var database = parseInt(document.getElementById('database').value);
+    var swift = parseInt(document.getElementById('swift').value);
+    var ios = parseInt(document.getElementById('ios').value);
+    var javas = parseInt(document.getElementById('java').value);
+    var android = parseInt(document.getElementById('android').value);
+
+    gpa = (((swift+database+ios+javas+android) / 5) / 20) - 1;
+    document.getElementById('total').innerHTML = gpa.toFixed(2);
+
+
+
+
+    var web = parseInt(document.getElementById('web').value);
+    var php = parseInt(document.getElementById('php').value);
+    var cross = parseInt(document.getElementById('cross').value);
+    var iOSadv = parseInt(document.getElementById('iOSadv').value);
+    var androidadv = parseInt(document.getElementById('androidadv').value);
+
+    gpa2 = (((web + php + cross + iOSadv + androidadv) / 5) / 20) - 1;
+    gpa3 = (gpa + gpa2) / 2;
+    document.getElementById('total2').innerHTML = gpa3.toFixed(2);
+
+
+
+    var average1 = (document.getElementById('average1').value);
+    var average2 = (document.getElementById('average2').value);
+
+
+
+    if (gpa3 > 2.8){
+      document.getElementById('pass').innerHTML = "You can apply to Co-op!";
+      document.getElementById('myImage').src='img/green.gif';
+
+    } else {
+     document.getElementById('pass').innerHTML = "You can not apply to Co-op!";
+     document.getElementById('myImage').src='img/red.gif';
+
+   }
+
+   var chart;
+
+
+   var chartData = [{
+    "term": "Term 1 Average",
+    "gpa": average1,
+    "color": "#FF0F00"
+  }, {
+    "term": "Term 1 GPA ",
+    "gpa": gpa.toFixed(2),
+    "color": "#FF6600"
+  }, {
+    "term": "Term 2 Average",
+    "gpa": average2,
+    "color": "#FF9E01"
+  }, {
+    "term": "Term 2 GPA",
+    "gpa": gpa3.toFixed(2),
+    "color": "#FCD202"
+  }];
+
+
+
+  var chart = AmCharts.makeChart("chartdiv", {
+    type: "serial",
+    dataProvider: chartData,
+    categoryField: "term",
+    depth3D: 20,
+    angle: 30,
+
+    categoryAxis: {
+      labelRotation: 15,
+      gridPosition: "start"
+    },
+
+    valueAxes: [{
+      title: "GPA"
+    }],
+
+    graphs: [{
+
+      valueField: "gpa",
+      colorField: "color",
+      type: "column",
+      lineAlpha: 2,
+      fillAlphas: 1
+    }],
+
+    chartCursor: {
+      cursorAlpha: 0,
+      zoomable: false,
+      categoryBalloonEnabled: false
+    },
+
+
+  });
+}
+
+
+
+</script>
+
+
+</head>
+<body>
+
+
+
+  <!-- Term 1 -->
+
+  <div class="card-panel orange lighten-5">
+
+    <h4 class="center-align">Term 1</h4>
+    <br>
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="Database grade %" type="number" class="validate" id="database" onchange="computeLoan()">
+        <label for="Database">Database</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="Swift grade %" type="number" class="validate" id="swift" onchange="computeLoan()">
+        <label for="Swift">Swift</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="iOS grade %" type="number" class="validate" id="ios" onchange="computeLoan()">
+        <label for="iOS">iOS</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="Java grade %" type="number" class="validate" id="java" onchange="computeLoan()">
+        <label for="Java">Java</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="Android grade %" type="number" class="validate" id="android" onchange="computeLoan()">
+        <label for="Android">Android</label>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col s6">
+
+        <input placeholder="Average GPA" type="number" class="validate" id="average1" step="0.01" onchange="computeLoan()" >
+      </div>
+
+      <div class="col s6">
+        <p>GPA:   <a id="total">0</a></p>
+      </div>
+    </div>
+
+
+
+    <br><br>
+
+  </div>
+
+  <div class="card-panel green lighten-5">
+
+    <!-- Term 2 -->
+    <h4 class="center-align">Term 2</h4>
+    <br>
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="Web grade %" type="number" class="validate" id="web" onchange="computeLoan()">
+        <label for="Web">Web</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="PHP grade %" type="number" class="validate" id="php" onchange="computeLoan()">
+        <label for="PHP">PHP</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="Cross grade %" type="number" class="validate" id="cross" onchange="computeLoan()">
+        <label for="Cross">Cross</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="iOS Advanced grade %" type="number" class="validate" id="iOSadv" onchange="computeLoan()">
+        <label for="iOSadv">iOS Advanced</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="Android Advanced grade %" type="number" class="validate" id="androidadv" onchange="computeLoan()">
+        <label for="Androidadv">Android Advanced</label>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col s6">
+
+        <input placeholder="Average 2 GPA" type="number" class="validate" id="average2" step="0.01" onchange="computeLoan()" >
+      </div>
+
+      <div class="col s6">
+        <p>GPA:   <a id="total2">0</a></p>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="card-panel red lighten-2">
+    <h4 class="center-align">GPA Graph</h4>
+    <div id="chartdiv" style="width: 100%; height: 400px;"></div>
+  </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <h5 align="center"><a id="pass"></a></h5>
+
+      <img id="myImage"  style="width:100px; display:block; margin:auto;">
+
+    </div>
+  </div>
+
+</body>
+</html>
